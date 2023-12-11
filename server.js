@@ -12,13 +12,15 @@ const FRONTEND = process.env.FRONTEND;
 
 var corsOptions = {
   origin: FRONTEND,
+
+  credentials: true,
+
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use("/api/products", productRoute);
-app.use(cors(corsOptions));
+app.use("/api/products", cors(corsOptions), productRoute);
 
 //routes
 
